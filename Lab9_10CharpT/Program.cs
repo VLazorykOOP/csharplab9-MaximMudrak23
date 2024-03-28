@@ -175,7 +175,7 @@ class Program
         //                {
         //                    aNums.Enqueue(number);
         //                }
-        //                else if(number > b)
+        //                else if (number > b)
         //                {
         //                    bNums.Enqueue(number);
         //                }
@@ -275,6 +275,8 @@ class Program
         //                }
         //            }
 
+        //            vowels.Reverse();
+
         //            Console.Write("Vowels: ");
         //            foreach (char vowel in vowels)
         //            {
@@ -292,129 +294,124 @@ class Program
         // Task3.1
         // Task3.2
 
-        //Console.Write("1 - Create and Write | 2 - Read: ");
-        //int enter = int.Parse(Console.ReadLine());
+        Console.Write("1 - Create and Write | 2 - Read: ");
+        int enter = int.Parse(Console.ReadLine());
 
-        //if (enter == 1)
-        //{
-        //    Console.Write("Filename: ");
-        //    string filePath = Console.ReadLine();
-        //    if (string.IsNullOrEmpty(filePath))
-        //    {
-        //        Console.WriteLine("Error u dont enter filename");
-        //        return;
-        //    }
-        //    filePath += ".txt";
+        if (enter == 1)
+        {
+            Console.Write("Filename: ");
+            string filePath = Console.ReadLine();
+            if (string.IsNullOrEmpty(filePath))
+            {
+                Console.WriteLine("Error u dont enter filename");
+                return;
+            }
+            filePath += ".txt";
 
-        //    Console.Write("Enter something: ");
-        //    string content = Console.ReadLine();
-        //    if (string.IsNullOrEmpty(content))
-        //    {
-        //        Console.WriteLine("Error u dont enter content");
-        //        return;
-        //    }
+            Console.Write("Enter something: ");
+            string content = Console.ReadLine();
+            if (string.IsNullOrEmpty(content))
+            {
+                Console.WriteLine("Error u dont enter content");
+                return;
+            }
 
-        //    try
-        //    {
-        //        ArrayList list = new ArrayList();
-        //        list.Add(content);
+            try
+            {
+                ArrayList list = new ArrayList();
+                list.Add(content);
 
-        //        // Створення нового файлу або перезапис існуючого
-        //        using (StreamWriter writer = new StreamWriter(filePath))
-        //        {
-        //            foreach (var item in list)
-        //            {
-        //                writer.WriteLine(item);
-        //            }
-        //        }
+                // Створення нового файлу або перезапис існуючого
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    foreach (var item in list)
+                    {
+                        writer.WriteLine(item);
+                    }
+                }
 
-        //        Console.WriteLine($"File {filePath} successfully created.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error: " + ex.Message);
-        //    }
-        //}
-        //else if (enter == 2)
-        //{
-        //    Console.Write("Filename: ");
-        //    string fileName = Console.ReadLine();
-        //    string filePath = fileName + ".txt";
-        //    if (!File.Exists(filePath))
-        //    {
-        //        Console.WriteLine("Error file does not exist");
-        //        return;
-        //    }
+                Console.WriteLine($"File {filePath} successfully created.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+        else if (enter == 2)
+        {
+            Console.Write("Filename: ");
+            string fileName = Console.ReadLine();
+            string filePath = fileName + ".txt";
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Error file does not exist");
+                return;
+            }
 
-        //    try
-        //    {
-        //        // Відкриваємо файл для читання
-        //        using (StreamReader reader = new StreamReader(filePath))
-        //        {
-        //            ArrayList numbers = new ArrayList();
-        //            string line;
+            try
+            {
+                // Відкриваємо файл для читання
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    ArrayList numbers = new ArrayList();
+                    string line;
 
-        //            // Зчитуємо рядок з файлу
-        //            line = reader.ReadLine();
-        //            Console.WriteLine($"Read line from file: {line}");
+                    // Зчитуємо рядок з файлу
+                    line = reader.ReadLine();
+                    Console.WriteLine($"Read line from file: {line}");
 
-        //            // Розділяємо рядок на окремі числа та додаємо їх до списку
-        //            string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        //            foreach (string numString in numberStrings)
-        //            {
-        //                if (int.TryParse(numString, out int number))
-        //                {
-        //                    numbers.Add(number);
-        //                }
-        //            }
+                    // Розділяємо рядок на окремі числа та додаємо їх до списку
+                    string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string numString in numberStrings)
+                    {
+                        if (int.TryParse(numString, out int number))
+                        {
+                            numbers.Add(number);
+                        }
+                    }
 
-        //            // Виводимо всі цифри з файлу
-        //            Console.Write("Numbers from the file: ");
-        //            foreach (var number in numbers)
-        //            {
-        //                Console.Write($"{number} ");
-        //            }
+                    // Виводимо всі цифри з файлу
+                    Console.Write("Numbers from the file: ");
+                    foreach (var number in numbers)
+                    {
+                        Console.Write($"{number} ");
+                    }
 
-        //            // Знаходимо перше і останнє число
-        //            int a = numbers.Count > 0 ? (int)numbers[0] : 0;
-        //            int b = numbers.Count > 0 ? (int)numbers[numbers.Count - 1] : 0;
+                    // Знаходимо перше і останнє число
+                    int a = numbers.Count > 0 ? (int)numbers[0] : 0;
+                    int b = numbers.Count > 0 ? (int)numbers[numbers.Count - 1] : 0;
 
-        //            Console.WriteLine($"\nFirst: {a}, Last: {b}");
+                    Console.WriteLine($"\nFirst: {a}, Last: {b}");
 
-        //            // Виводимо всі числа менші за перше число
-        //            Console.Write($"Numbers < a: ");
-        //            foreach (var number in numbers)
-        //            {
-        //                if ((int)number < a)
-        //                {
-        //                    Console.Write($"{number} ");
-        //                }
-        //            }
+                    // Виводимо всі числа менші за перше число
+                    Console.Write($"Numbers < a: ");
+                    foreach (var number in numbers)
+                    {
+                        if ((int)number < a)
+                        {
+                            Console.Write($"{number} ");
+                        }
+                    }
 
-        //            // Виводимо всі числа більші за останнє число
-        //            Console.Write($"\nNumbers > b: ");
-        //            foreach (var number in numbers)
-        //            {
-        //                if ((int)number > b)
-        //                {
-        //                    Console.Write($"{number} ");
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error reading file: " + ex.Message);
-        //    }
-        //}
-        //else return;
+                    // Виводимо всі числа більші за останнє число
+                    Console.Write($"\nNumbers > b: ");
+                    foreach (var number in numbers)
+                    {
+                        if ((int)number > b)
+                        {
+                            Console.Write($"{number} ");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error reading file: " + ex.Message);
+            }
+        }
+        else return;
 
         // Task3.2
-        // Task4 Доробити
-
-
-
-        // Task4
     }
 
     // Task1 + 3
@@ -437,78 +434,4 @@ class Program
         }
     }
     // Task1 + 3
-    // Task4 Доробити
-
-    class Song
-    {
-        public string Title { get; set; }   // Назва пісні
-        public string Artist { get; set; }  // Виконавець пісні
-
-        // Конструктор класу
-        public Song(string title, string artist)
-        {
-            Title = title;
-            Artist = artist;
-        }
-
-        // Перевизначення методу ToString для зручного виведення інформації про пісню
-        public override string ToString()
-        {
-            return $"Пісня: {Title}, Виконавець: {Artist}";
-        }
-    }
-
-
-    class MusicCD
-    {
-        public string Title { get; set; }
-        private List<Song> songs = new List<Song>(); // список пісень на диску
-
-        // Конструктор класу
-        public MusicCD(string title)
-        {
-            Title = title;
-        }
-
-        // Метод для додавання пісні на диск
-        public void AddSong(string title, string artist)
-        {
-            Song song = new Song(title, artist);
-            songs.Add(song);
-        }
-
-        // Метод для видалення пісні з диску
-        public void RemoveSong(string title)
-        {
-            // знаходимо пісню за назвою та видаляємо її зі списку
-            Song songToRemove = songs.Find(song => song.Title == title);
-            if (songToRemove != null)
-            {
-                songs.Remove(songToRemove);
-            }
-            else
-            {
-                Console.WriteLine($"Пісня з назвою '{title}' не знайдена на диску '{Title}'.");
-            }
-        }
-
-        // Метод для виведення вмісту диску
-        public void DisplayContent()
-        {
-            Console.WriteLine($"Музичний диск '{Title}':");
-            if (songs.Count == 0)
-            {
-                Console.WriteLine("На диску немає пісень.");
-            }
-            else
-            {
-                foreach (var song in songs)
-                {
-                    Console.WriteLine(song);
-                }
-            }
-        }
-    }
-
-    // Task4
 }
